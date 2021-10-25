@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "projects": {
+    "nx-angular": {
+      "projectType": "application",
+      "root": "apps/nx-angular",
+      "sourceRoot": "apps/nx-angular/src",
+      "prefix": "nx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/nx-angular",
+            "index": "apps/nx-angular/src/index.html",
+            "main": "apps/nx-angular/src/main.ts",
+            "polyfills": "apps/nx-angular/src/polyfills.ts",
+            "tsConfig": "apps/nx-angular/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/nx-angular/src/favicon.ico",
+              "apps/nx-angular/src/assets"
+            ],
+            "styles": ["apps/nx-angular/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/nx-angular/src/environments/environment.ts",
+                  "with": "apps/nx-angular/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "nx-angular:build:production"
+            },
+            "development": {
+              "browserTarget": "nx-angular:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "nx-angular:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/nx-angular/src/**/*.ts",
+              "apps/nx-angular/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/nx-angular"],
+          "options": {
+            "jestConfig": "apps/nx-angular/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "nx-angular-e2e": {
+      "root": "apps/nx-angular-e2e",
+      "sourceRoot": "apps/nx-angular-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/nx-angular-e2e/cypress.json",
+            "devServerTarget": "nx-angular:serve:development",
+            "tsConfig": "apps/nx-angular-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "nx-angular:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/nx-angular-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["nx-angular"]
+    }
+  }
+}
