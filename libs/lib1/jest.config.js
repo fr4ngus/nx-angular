@@ -10,6 +10,12 @@ module.exports = {
   },
   coverageDirectory: '../../coverage/libs/lib1',
   coverageReporters: ["clover", "json", "lcov", ["text", {"skipFull": true}]],
+  coveragePathIgnorePatterns: [
+    "node_modules",
+    ".module.ts",
+    ".mock.ts",
+    "jest.config.js"
+  ],
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },
