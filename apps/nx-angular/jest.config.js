@@ -10,12 +10,6 @@ module.exports = {
   },
   coverageDirectory: '../../coverage/apps/nx-angular',
   coverageReporters: ["clover", "json", "lcov", ["text", {"skipFull": true}]],
-  coveragePathIgnorePatterns: [
-    "node_modules",
-    ".module.ts",
-    ".mock.ts",
-    "jest.config.js"
-  ],
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },
