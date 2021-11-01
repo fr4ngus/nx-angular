@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'nx-angular',
+  displayName: 'lib1',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../coverage/apps/nx-angular',
+  coverageDirectory: '../../coverage/libs/lib1',
   coverageReporters: ["clover", "json", "lcov", ["text", {"skipFull": true}]],
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',

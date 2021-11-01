@@ -1,6 +1,32 @@
 {
   "version": 1,
   "projects": {
+    "lib1": {
+      "projectType": "library",
+      "root": "libs/lib1",
+      "sourceRoot": "libs/lib1/src",
+      "prefix": "nx",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/lib1"],
+          "options": {
+            "jestConfig": "libs/lib1/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/lib1/src/**/*.ts",
+              "libs/lib1/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "nx-angular": {
       "projectType": "application",
       "root": "apps/nx-angular",
