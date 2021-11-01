@@ -9,6 +9,7 @@ module.exports = {
     },
   },
   coverageDirectory: '../../coverage/libs/lib1',
+  coverageReporters: ["clover", "json", "lcov", ["text", {"skipFull": true}]],
   transform: {
     '^.+\\.(ts|js|html)$': 'jest-preset-angular',
   },
